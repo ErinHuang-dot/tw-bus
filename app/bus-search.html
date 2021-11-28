@@ -1,0 +1,139 @@
+---
+title: Bus Search
+layout: ./app/layout-dark.ejs
+engine: ejs
+current: index
+---
+<!-- header-shadow -->
+<div class="header-shadow"></div>
+<!-- breadcrumb -->
+<nav class="nav-bread bg-primary" aria-label="breadcrumb">
+    <div class="container">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a class="text-white" href="#">首頁</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">公車動態</li>
+        </ol>
+    </div>
+</nav>
+<!-- 搜尋輸入框 -->
+<div class="search-area-lg bg-primary">
+    <div class="container">
+        <div class="search-content mx-auto">
+            <p class="text-accent mb-3">*選擇縣市有助於您更快找到路線</p>
+            <form class="search-body d-block d-md-flex">
+                <p class="search-body-s w-100 me-0 me-md-5">
+                    <input class="form-control" type="text" list="cityDataList" name="city" id="citySelect" placeholder="請選擇縣市或手動輸入關鍵字">
+                    <datalist id="cityDataList">
+                        <option value="臺北市">臺北市</option>
+                    </datalist>
+                </p>
+                <p class="search-body-e w-100">
+                    <input class="form-control" type="text" name="route" id="routeSearch" placeholder="請選擇路線或手動輸入關鍵字">
+                    <button type="button"><i class="fas fa-search text-primary-font fs-3"></i></button>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 主要內容區 -->
+<main class="search-info">
+    <div class="container">
+        <div class="search-info-content d-md-flex mx-auto">
+            <!-- 搜尋結果 -->
+            <div class="search-info-s w-100 me-0 me-md-5">
+                <h2 class="bg-primary text-white text-center">搜尋結果</h2>
+                <div class="search-info-s-body">
+                    <!-- 搜尋：顯示清單 -->
+                    <div class="search-info-s-body-top">
+                        <div class="form-check form-switch text-end py-4">
+                            <label class="form-check-label fs-5" for="flexSwitchCheckDefault">僅顯示提供無障礙車輛之路線</label>
+                            <input class="form-check-input ms-2" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        </div>                      
+                    </div>
+                    <div class="search info-s-body-bottom">
+                        <ul class="search-result-list mx-auto">
+                            <li>
+                                <div class="search-result-card card border-0">
+                                    <div class="card-body p-0">
+                                        <div class="card-body-top d-flex justify-content-between align-items-center">
+                                            <h2 class="card-title text-secondary p-0">5053</h5>
+                                            <button type="button"><i class="far fa-heart fs-3 text-secondary-cool1"></i></button>
+                                        </div>
+                                        <div class="card-body-bottom d-flex justify-content-between align-items-center">
+                                            <p class="card-text"><small>桃園<i class="fas fa-arrows-alt-h px-2"></i>龍潭(經九龍里)</small></p>
+                                            <p class="card-text text-secondary-cool1"><small>桃園</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 搜尋：預設 -->
+                    <!-- <div class="text-center">
+                        <img class="search-result-img" src="./assets/images/signPic_default.png" alt="開始尋找公車路線">
+                        <p class="text-secondary-cool2">尋找您的公車路線</p>
+                    </div> -->
+                    <!-- 搜尋：找不到 -->
+                    <!-- <div class="text-center">
+                        <img class="search-result-img" src="./assets/images//signPic_wrong.png" alt="搜尋不到公車路線">
+                        <p class="text-secondary-cool2">很抱歉，找不到符合的路線</p>
+                    </div> -->
+                </div>
+            </div>
+            <!-- 路線搜尋快捷鍵 -->
+            <div class="search-info-e w-100 d-flex">
+                <div class="search-info-btn-s d-flex flex-wrap">
+                    <button type="button" class="btn btn-danger text-white mb-4">紅</button>
+                    <button type="button" class="btn btn-info text-white mb-4">藍</button>
+                    <button type="button" class="btn btn-calm text-white mb-4">棕</button>
+                    <button type="button" class="btn btn-success text-white mb-4">綠</button>
+                    <button type="button" class="btn btn-warning text-white mb-4">黃</button>
+                    <button type="button" class="btn btn-positive text-white mb-4">橘</button>
+                    <button type="button" class="btn text-primary-font btn-outline-secondary-cool2 mb-4">F</button>
+                    <button type="button" class="btn search-btn-more text-white mb-4" data-bs-toggle="modal" data-bs-target="#moreRouteModal">更多</button>
+                </div>
+                <div class="search-info-btn-e d-flex flex-wrap justify-content-center">
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">1</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">2</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">3</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">4</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">5</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">6</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">7</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">8</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">9</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">C</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4">0</button>
+                    <button type="button" class="btn btn-gray-input text-primary-font mb-4"><i class="fas fa-backspace"></i></button>
+                </div>
+            </div>
+            <!-- modal-更多選項 -->
+            <div class="more-route-modal modal fade" id="moreRouteModal" tabindex="-1" aria-labelledby="moreRouteModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                      <h4 class="modal-title" id="moreRouteModalLabel">更多選項</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="btn-option d-flex flex-wrap">
+                          <button type="button" class="btn btn-outline-secondary-cool1">L</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">JOY</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">幹線</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">市民</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">內科</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">南軟</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">花季</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">貓空</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">高鐵</button>
+                          <button type="button" class="btn btn-outline-secondary-cool1">其他</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>       
+    </div>
+</main>
+
+

@@ -11,7 +11,12 @@
 
 
 // components
+@import "./components/button";
+@import "./components/card";
+@import "./components/form";
 
 
 // layout
-@import './layout/index.scss'
+@import "./layout/layout";
+@import "./layout/index";
+@import "./layout/bus-search";

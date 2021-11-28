@@ -1,0 +1,118 @@
+// header-shadow
+body {
+    position: relative;
+    .header-shadow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 280px;
+        border-radius: 0px 0px 20px 20px;
+        box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.85);
+        z-index: -1;
+    }
+}
+// 搜尋輸入框
+.search-area-lg {
+    padding: 1.125rem 0 1.875rem;
+    border-radius: 0px 0px 20px 20px;
+    .search-content {
+        width: 68.36%;
+    }
+    .search-body-e {
+        position: relative;
+    }
+    .fa-search {
+        position: absolute;
+        top: 1.125rem;
+        right: 1rem;
+    }
+}
+
+// 主要內容區
+.search-info {
+    padding: 2.75rem 0;
+    &-content {
+        width: 68.36%;        
+    }
+    &-s, &-e {
+        border-radius: 1.25rem;
+        overflow: hidden;
+        box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.15);
+    }
+    // 搜尋結果
+    &-s {
+        min-height: 446px;
+        h2 {
+            padding: .625rem 0;
+        }
+    }
+    &-s-body {
+        padding: 0 2.875rem;
+    }   
+    .form-switch .form-check-input {
+        float: right;
+    }
+    .search-result-img {
+        margin-top: 9rem;
+        margin-bottom: 1.125rem;
+    }
+    // 路線搜尋快捷鍵
+    &-e {
+        align-self: start;
+        padding: 2.25rem .75rem 1.25rem 1.375rem;
+        border-radius: 1.25rem;
+        box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.15);
+        button {
+            min-width: 4.375rem;
+        }
+    }
+    &-btn-s {
+        width: 39.5%;
+    }
+    &-btn-e {
+        width: 60.5%;
+    }
+    &-btn-s, &-btn-e {
+        button {
+            margin-right: .625rem;
+        }
+    }
+    .search-btn-more {
+        background-color: #B1B4BE;
+    }
+}
+
+// modal-更多選項
+.more-route-modal {
+    min-height: 428px;
+    .modal-dialog {
+        max-width: 886px;
+    }
+    .modal-content {
+        height: 100%;
+        border-radius: 1.25rem;
+    }
+    .modal-header {
+        position: relative;
+        padding: 2rem 2.5rem 0;
+        border-bottom: none;
+    }
+    .modal-title {
+        font-weight: bold;
+    }
+    .btn-close {
+        margin: 0;
+        position: absolute;
+        top: 2rem;
+        left: 2.5rem;
+    }
+    .btn-option {
+        padding: 2rem 4.25rem 0 6.125rem;
+        button {
+            width: 30%;
+            margin-right: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+}
