@@ -42,13 +42,16 @@ body {
     }
     // 搜尋結果
     &-s {
-        min-height: 446px;
+        min-height: 491px;
+        max-height: 600px;
         h2 {
             padding: .625rem 0;
         }
     }
     &-s-body {
-        padding: 0 2.875rem;
+        height: 100%;
+        padding: 0 2.875rem 2rem;
+        overflow-y: auto;
     }   
     .form-switch .form-check-input {
         float: right;

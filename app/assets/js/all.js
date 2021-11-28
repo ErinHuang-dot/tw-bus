@@ -41,6 +41,7 @@ const routeSearch = document.querySelector('#routeSearch');
 let city = '';
 let routeName = '';
 
+
 citySelect.addEventListener('change', function(e) {
   city = e.target.value;
   console.log('city', city);
@@ -54,7 +55,7 @@ routeSearch.addEventListener('blur', function(e) {
 
 
 // 接市區公車路線資料
-const searchReultRoute = document.querySelector('.search-result-list');
+const searchReultRoute = document.querySelector('.search-info-s-body');
 let routeData = [];
 
 function getCityRoute(city) {
@@ -67,33 +68,53 @@ function getCityRoute(city) {
             console.log('城市路線資料', response)
             const routeData = response.data;
 
+            // 搜尋縣市後顯示
             let str='';
             routeData.forEach((item) => {
               str += `
-              <li>
-                <div class="search-result-card card border-0">
-                    <div class="card-body p-0">
-                        <div class="card-body-top d-flex justify-content-between align-items-center">
-                            <h2 class="card-title text-secondary p-0">${item.RouteName.Zh_tw}</h5>
-                            <button type="button"><i class="far fa-heart fs-3 text-secondary-cool1"></i></button>
-                        </div>
-                        <div class="card-body-bottom d-flex justify-content-between align-items-center">
-                            <p class="card-text"><small>${item.DepartureStopNameZh}<i class="fas fa-arrows-alt-h px-2"></i>${item.DestinationStopNameZh}</small></p>
-                            <p class="card-text text-secondary-cool1"><small>${city}</small></p>
-                        </div>
-                    </div>
-                </div>
-              </li>`
+                        <li class="mb-4">
+                          <div class="search-result-card card border-0">
+                              <div class="card-body p-0">
+                                  <div class="card-body-top d-flex justify-content-between align-items-center">
+                                      <h2 class="card-title text-secondary p-0">${item.RouteName.Zh_tw}</h5>
+                                      <button type="button"><i class="far fa-heart fs-3 text-secondary-cool1"></i></button>
+                                  </div>
+                                  <div class="card-body-bottom d-flex justify-content-between align-items-center">
+                                      <p class="card-text me-2"><small>${item.DepartureStopNameZh}<i class="fas fa-arrows-alt-h px-2"></i>${item.DestinationStopNameZh}</small></p>
+                                      <p class="card-text text-secondary-cool1"><small>${city}</small></p>
+                                  </div>
+                              </div>
+                          </div>
+                        </li>                        
+              `
             })
           
-          searchReultRoute.innerHTML = str;
+          searchReultRoute.innerHTML = 
+          `
+          <div class="search-info-s-body-top">
+                    <div class="form-check form-switch text-end pb-4">
+                        <label class="form-check-label fs-5" for="flexSwitchCheckDefault">僅顯示提供無障礙車輛之路線</label>
+                        <input class="form-check-input ms-2" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div>                      
+                </div>
+                <div class="search info-s-body-bottom">
+                    <ul class="search-result-list mx-auto">
+          ` + str + 
+          `</ul>
+          </div>`;
 
         })
         .catch((error) => console.log('error', error))
 }
 getCityRoute();
 
-
+// 搜尋縣市+路線後顯示
+let casheData = routeData;
+routeSearch.addEventListener('change', function(e) {
+  const reg = new RegExp(e.target.value, 'gi');
+  casheData = routeData.filter((item) => item.RouteName.Zh_tw.match(reg));
+  getCityRoute(city);
+})
 
 // TDX API 驗證
 function GetAuthorizationHeader() {

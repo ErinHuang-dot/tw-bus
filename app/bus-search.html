@@ -42,37 +42,38 @@ current: index
             <!-- 搜尋結果 -->
             <div class="search-info-s w-100 me-0 me-md-5">
                 <h2 class="bg-primary text-white text-center">搜尋結果</h2>
-                <div class="search-info-s-body">
-                    <!-- 搜尋：顯示清單 -->
-                    <div class="search-info-s-body-top">
-                        <div class="form-check form-switch text-end py-4">
+                <div class="search-info-s-body" id="scrollStyle">
+                    <!-- 搜尋：篩選無障礙switch -->
+                    <!-- <div class="search-info-s-body-top">
+                        <div class="form-check form-switch text-end pb-4">
                             <label class="form-check-label fs-5" for="flexSwitchCheckDefault">僅顯示提供無障礙車輛之路線</label>
                             <input class="form-check-input ms-2" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                         </div>                      
-                    </div>
-                    <div class="search info-s-body-bottom">
+                    </div> -->
+                    <!-- 搜尋：顯示清單 -->
+                    <!-- <div class="search info-s-body-bottom">
                         <ul class="search-result-list mx-auto">
-                            <li>
+                            <li class="mb-4">
                                 <div class="search-result-card card border-0">
                                     <div class="card-body p-0">
                                         <div class="card-body-top d-flex justify-content-between align-items-center">
-                                            <h2 class="card-title text-secondary p-0">5053</h5>
+                                            <h2 class="card-title text-secondary p-0">${item.RouteName.Zh_tw}</h5>
                                             <button type="button"><i class="far fa-heart fs-3 text-secondary-cool1"></i></button>
                                         </div>
                                         <div class="card-body-bottom d-flex justify-content-between align-items-center">
-                                            <p class="card-text"><small>桃園<i class="fas fa-arrows-alt-h px-2"></i>龍潭(經九龍里)</small></p>
-                                            <p class="card-text text-secondary-cool1"><small>桃園</small></p>
+                                            <p class="card-text me-2"><small>${item.DepartureStopNameZh}<i class="fas fa-arrows-alt-h px-2"></i>${item.DestinationStopNameZh}</small></p>
+                                            <p class="card-text text-secondary-cool1"><small>${city}</small></p>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li>          
                         </ul>
-                    </div>
+                    </div> -->
                     <!-- 搜尋：預設 -->
-                    <!-- <div class="text-center">
+                    <div class="text-center">
                         <img class="search-result-img" src="./assets/images/signPic_default.png" alt="開始尋找公車路線">
                         <p class="text-secondary-cool2">尋找您的公車路線</p>
-                    </div> -->
+                    </div>
                     <!-- 搜尋：找不到 -->
                     <!-- <div class="text-center">
                         <img class="search-result-img" src="./assets/images//signPic_wrong.png" alt="搜尋不到公車路線">
