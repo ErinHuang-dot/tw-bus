@@ -94,7 +94,7 @@ routeSearch.addEventListener('blur', function (e) {
   console.log('route', routeName);
 }); // 接市區公車路線資料
 
-var searchReultRoute = document.querySelector('.search-result-list');
+var searchReultRoute = document.querySelector('.search-info-s-body');
 var routeData = [];
 
 function getCityRoute(city) {
@@ -104,18 +104,28 @@ function getCityRoute(city) {
     headers: GetAuthorizationHeader()
   }).then(function (response) {
     console.log('城市路線資料', response);
-    var routeData = response.data;
+    var routeData = response.data; // 搜尋縣市後顯示
+
     var str = '';
     routeData.forEach(function (item) {
-      str += "\n              <li>\n                <div class=\"search-result-card card border-0\">\n                    <div class=\"card-body p-0\">\n                        <div class=\"card-body-top d-flex justify-content-between align-items-center\">\n                            <h2 class=\"card-title text-secondary p-0\">".concat(item.RouteName.Zh_tw, "</h5>\n                            <button type=\"button\"><i class=\"far fa-heart fs-3 text-secondary-cool1\"></i></button>\n                        </div>\n                        <div class=\"card-body-bottom d-flex justify-content-between align-items-center\">\n                            <p class=\"card-text\"><small>").concat(item.DepartureStopNameZh, "<i class=\"fas fa-arrows-alt-h px-2\"></i>").concat(item.DestinationStopNameZh, "</small></p>\n                            <p class=\"card-text text-secondary-cool1\"><small>").concat(city, "</small></p>\n                        </div>\n                    </div>\n                </div>\n              </li>");
+      str += "\n                        <li class=\"mb-4\">\n                          <div class=\"search-result-card card border-0\">\n                              <div class=\"card-body p-0\">\n                                  <div class=\"card-body-top d-flex justify-content-between align-items-center\">\n                                      <h2 class=\"card-title text-secondary p-0\">".concat(item.RouteName.Zh_tw, "</h5>\n                                      <button type=\"button\"><i class=\"far fa-heart fs-3 text-secondary-cool1\"></i></button>\n                                  </div>\n                                  <div class=\"card-body-bottom d-flex justify-content-between align-items-center\">\n                                      <p class=\"card-text me-2\"><small>").concat(item.DepartureStopNameZh, "<i class=\"fas fa-arrows-alt-h px-2\"></i>").concat(item.DestinationStopNameZh, "</small></p>\n                                      <p class=\"card-text text-secondary-cool1\"><small>").concat(city, "</small></p>\n                                  </div>\n                              </div>\n                          </div>\n                        </li>                        \n              ");
     });
-    searchReultRoute.innerHTML = str;
+    searchReultRoute.innerHTML = "\n          <div class=\"search-info-s-body-top\">\n                    <div class=\"form-check form-switch text-end pb-4\">\n                        <label class=\"form-check-label fs-5\" for=\"flexSwitchCheckDefault\">\u50C5\u986F\u793A\u63D0\u4F9B\u7121\u969C\u7919\u8ECA\u8F1B\u4E4B\u8DEF\u7DDA</label>\n                        <input class=\"form-check-input ms-2\" type=\"checkbox\" role=\"switch\" id=\"flexSwitchCheckDefault\">\n                    </div>                      \n                </div>\n                <div class=\"search info-s-body-bottom\">\n                    <ul class=\"search-result-list mx-auto\">\n          " + str + "</ul>\n          </div>";
   })["catch"](function (error) {
     return console.log('error', error);
   });
 }
 
-getCityRoute(); // TDX API 驗證
+getCityRoute(); // 搜尋縣市+路線後顯示
+
+var casheData = routeData;
+routeSearch.addEventListener('change', function (e) {
+  var reg = new RegExp(e.target.value, 'gi');
+  casheData = routeData.filter(function (item) {
+    return item.RouteName.Zh_tw.match(reg);
+  });
+  getCityRoute(city);
+}); // TDX API 驗證
 
 function GetAuthorizationHeader() {
   var AppID = 'f7c6d9e58f254fe5af3cd8ee9794906d';
